@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ahmed Nasri — Portfolio BTS SIO SLAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050810;--bg2:#080d1a;--bg3:#0b1120;
+  --glass:rgba(255,255,255,0.045);--glass2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.15);
+  --text:#f0f4ff;--muted:#8b97b8;--muted2:#5e6a85;
+  --accent:#00e5ff;--accent2:#7c6dfa;--accent3:#39ff8b;
+  --gold:#ffd166;--red:#ff5f7e;
+  --r:20px;--rl:28px;
+  --shadow:0 32px 80px rgba(0,0,0,.5);
+  --t:220ms cubic-bezier(.2,.8,.2,1);
+  --header:72px;
+  --ff:'Syne',sans-serif;--fb:'Instrument Sans',sans-serif;--fm:'DM Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;border:0;cursor:pointer}
+.bgl{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.bgl::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 10% 0%,rgba(0,229,255,.07),transparent),radial-gradient(ellipse 50% 60% at 90% 20%,rgba(124,109,250,.07),transparent),radial-gradient(ellipse 40% 40% at 50% 90%,rgba(57,255,139,.05),transparent),linear-gradient(180deg,#050810,#060a14 60%,#050810)}
+.bgg{position:fixed;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.6))}
+.wrap{width:min(1360px,calc(100% - 40px));margin-inline:auto}
+/* HEADER */
+header{position:sticky;top:0;z-index:200;height:var(--header);display:flex;align-items:center;background:rgba(5,8,16,.8);border-bottom:1px solid var(--border);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);transition:background var(--t),box-shadow var(--t)}
+header.sc{background:rgba(5,8,16,.95);box-shadow:0 8px 40px rgba(0,0,0,.4)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
+.brand{display:flex;align-items:center;gap:14px}
+.av{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-family:var(--ff);font-weight:800;font-size:.85rem;color:#050810;flex-shrink:0}
+.bn{font-family:var(--ff);font-weight:700;font-size:.95rem}
+.bs{font-size:.78rem;color:var(--muted)}
+nav{display:flex;gap:4px;background:var(--glass);border:1px solid var(--border);border-radius:999px;padding:6px}
+nav a{padding:8px 13px;border-radius:999px;color:var(--muted);font-size:.8rem;font-weight:500;transition:background var(--t),color var(--t)}
+nav a:hover,nav a.act{background:var(--glass2);color:var(--text)}
+.hbtn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#050810;font-weight:700;font-size:.82rem;transition:transform var(--t),opacity var(--t)}
+.hbtn:hover{transform:translateY(-2px);opacity:.9}
+.mbtn{display:none;width:44px;height:44px;border-radius:14px;background:var(--glass);border:1px solid var(--border);color:var(--text);position:relative}
+.mbtn span,.mbtn span::before,.mbtn span::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:1.5px;border-radius:2px;background:currentColor;transform:translate(-50%,-50%);transition:transform var(--t),opacity var(--t)}
+.mbtn span::before{transform:translate(-50%,calc(-50% - 5px))}
+.mbtn span::after{transform:translate(-50%,calc(-50% + 5px))}
+.mbtn.op span{background:transparent}
+.mbtn.op span::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mbtn.op span::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mnav{position:fixed;left:12px;right:12px;top:calc(var(--header) + 8px);background:rgba(8,13,26,.97);border:1px solid var(--border2);border-radius:20px;padding:12px;z-index:199;display:none;backdrop-filter:blur(20px);animation:sd .18s ease}
+.mnav.op{display:block}
+.mnav a{display:block;padding:12px 16px;border-radius:12px;color:var(--muted);font-size:.9rem;margin-bottom:4px;transition:background var(--t),color var(--t)}
+.mnav a:hover{background:var(--glass2);color:var(--text)}
+@keyframes sd{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+/* GLOBAL */
+section{padding:100px 0;scroll-margin-top:calc(var(--header) + 16px)}
+.ew{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;font-weight:700;color:var(--muted);font-family:var(--fm);margin-bottom:16px}
+.ew::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--border2))}
+h1,h2,h3,h4{font-family:var(--ff);margin:0}
+h2{font-size:clamp(2.2rem,4vw,4rem);line-height:1.0;letter-spacing:-.04em}
+.gr{background:linear-gradient(135deg,#fff 0%,var(--accent) 45%,var(--accent2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.vi{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.card{background:linear-gradient(160deg,var(--glass2),var(--glass));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;position:relative}
+.card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06),transparent 40%);pointer-events:none}
+/* HERO */
+#hero{min-height:calc(100vh - var(--header));display:flex;align-items:center;padding-top:60px}
+.hg{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.hc{padding:52px;border-radius:var(--rl)}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);font-size:.78rem;font-weight:600;color:var(--accent);font-family:var(--fm);margin-bottom:28px}
+.hbadge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pu 2s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
+.hc h1{font-size:clamp(3rem,6vw,6rem);line-height:.95;letter-spacing:-.06em;margin:0 0 20px}
+.hc p{color:var(--muted);font-size:1.05rem;line-height:1.9;max-width:480px}
+.ha{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.bp{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#050810;font-weight:700;font-size:.9rem;transition:transform var(--t),box-shadow var(--t)}
+.bp:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,229,255,.25)}
+.bg{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:var(--glass);border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:.9rem;transition:transform var(--t),background var(--t)}
+.bg:hover{transform:translateY(-3px);background:var(--glass2)}
+.hst{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.st{padding:18px;text-align:center;border-radius:var(--r);background:var(--glass);border:1px solid var(--border)}
+.st strong{display:block;font-size:1.8rem;font-family:var(--ff);letter-spacing:-.04em}
+.st span{display:block;font-size:.8rem;color:var(--muted);margin-top:4px}
+.hs{display:flex;flex-direction:column;gap:0}
+.hfh{padding:28px 28px 22px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,var(--glass2),var(--glass))}
+.fi{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(124,109,250,.15));border:1px solid var(--border2);display:grid;place-items:center;font-size:1.3rem;margin-bottom:14px}
+.hfh h3{font-size:1.6rem;line-height:1.1;margin:6px 0}
+.hfh p{font-size:.9rem;color:var(--muted)}
+.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.fc{padding:20px;background:var(--bg2)}
+.fc strong{display:block;font-size:1.4rem;font-family:var(--ff);letter-spacing:-.03em}
+.fc span{display:block;margin-top:4px;font-size:.82rem;color:var(--muted)}
+/* PARCOURS */
+.tl{position:relative;display:flex;flex-direction:column;gap:0}
+.tl::before{content:"";position:absolute;left:119px;top:20px;bottom:20px;width:1px;background:linear-gradient(180deg,transparent,var(--border2) 10%,var(--border2) 90%,transparent)}
+.ti{display:grid;grid-template-columns:110px 28px 1fr;gap:0 20px;align-items:flex-start;padding:10px 0}
+.td{text-align:right;padding-top:14px;font-family:var(--fm);font-size:.76rem;color:var(--muted2);font-weight:500;line-height:1.4}
+.tw{display:flex;flex-direction:column;align-items:center;padding-top:14px}
+.tdot{width:14px;height:14px;border-radius:50%;background:var(--bg2);border:2px solid var(--border2);flex-shrink:0;transition:border-color var(--t)}
+.ti:hover .tdot{border-color:var(--accent)}
+.tc{padding:14px 20px;border-radius:var(--r);background:var(--glass);border:1px solid var(--border);transition:border-color var(--t),background var(--t);margin-bottom:8px}
+.ti:hover .tc{border-color:var(--border2);background:var(--glass2)}
+.tc h4{font-size:.98rem;margin-bottom:6px;font-family:var(--ff)}
+.tc p{font-size:.85rem;color:var(--muted);line-height:1.75}
+.tbg{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:6px;font-size:.72rem;font-weight:700;font-family:var(--fm);margin-top:8px}
+.tbg.g{background:rgba(57,255,139,.08);border:1px solid rgba(57,255,139,.18);color:var(--accent3)}
+.tbg.c{background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.18);color:var(--accent)}
+.tbg.p{background:rgba(124,109,250,.08);border:1px solid rgba(124,109,250,.18);color:#a89bff}
+.tbg.o{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.18);color:var(--gold)}
+.tdot.g{border-color:var(--accent3);background:rgba(57,255,139,.1)}
+.tdot.c{border-color:var(--accent);background:rgba(0,229,255,.1)}
+.tdot.p{border-color:#a89bff;background:rgba(124,109,250,.1)}
+.tdot.o{border-color:var(--gold);background:rgba(255,209,102,.1)}
+/* PROJETS */
+.fb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.fl{padding:8px 16px;border-radius:999px;background:var(--glass);border:1px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:600;transition:all var(--t);cursor:pointer}
+.fl:hover,.fl.act{background:var(--glass2);border-color:var(--border2);color:var(--text)}
+.sw{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:var(--r);background:var(--glass);border:1px solid var(--border);margin-bottom:28px}
+.sw input{background:none;border:0;color:var(--text);width:100%;font-size:.9rem;outline:none}
+.sw input::placeholder{color:var(--muted2)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{border-radius:var(--rl);overflow:hidden;background:linear-gradient(160deg,var(--glass2),var(--glass));border:1px solid var(--border);transition:transform var(--t),border-color var(--t),box-shadow var(--t);cursor:pointer;position:relative}
+.pc:hover{transform:translateY(-6px);border-color:var(--border2);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.pt{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.pti{font-size:2.5rem;opacity:.4}
+.pb{padding:22px}
+.ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;font-family:var(--fm);letter-spacing:.04em}
+.tag.g{background:rgba(57,255,139,.1);color:var(--accent3);border:1px solid rgba(57,255,139,.2)}
+.tag.c{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+.tag.pu{background:rgba(124,109,250,.1);color:#a89bff;border:1px solid rgba(124,109,250,.2)}
+.tag.go{background:rgba(255,209,102,.1);color:var(--gold);border:1px solid rgba(255,209,102,.2)}
+.tag.r{background:rgba(255,95,126,.1);color:var(--red);border:1px solid rgba(255,95,126,.2)}
+.ptit{font-size:1.05rem;font-weight:700;margin-bottom:8px;font-family:var(--ff)}
+.pdes{font-size:.85rem;color:var(--muted);line-height:1.75}
+.pft{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.blcs{display:flex;gap:4px;flex-wrap:wrap}
+.bl{padding:3px 8px;border-radius:6px;font-size:.68rem;font-weight:700;font-family:var(--fm);background:var(--glass);border:1px solid var(--border);color:var(--muted)}
+.oa{color:var(--muted);font-size:.8rem;transition:transform var(--t),color var(--t);font-family:var(--fm)}
+.pc:hover .oa{transform:translateX(4px);color:var(--accent)}
+/* SKILLS */
+.skg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skc{padding:28px;border-radius:var(--rl);background:linear-gradient(160deg,var(--glass2),var(--glass));border:1px solid var(--border)}
+.ski{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:16px;border:1px solid var(--border)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600;background:var(--glass);border:1px solid var(--border);color:var(--muted);font-family:var(--fm)}
+.tw2{border-radius:var(--r);border:1px solid var(--border);overflow:hidden;margin-top:20px}
+.dt{width:100%;border-collapse:collapse;font-size:.85rem}
+.dt th{padding:10px 14px;text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);border-bottom:1px solid var(--border);font-family:var(--fm)}
+.dt td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted)}
+.dt td:first-child{color:var(--text);font-weight:600;font-family:var(--fm)}
+.dt tr:last-child td{border-bottom:0}
+/* VEILLE */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.vl{padding:32px;border-radius:var(--rl);background:linear-gradient(160deg,var(--glass2),var(--glass));border:1px solid var(--border)}
+.vr{border-radius:var(--rl);overflow:hidden;border:1px solid var(--border)}
+.vsr{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.vsi{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--border);font-size:.85rem}
+.vsd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.vsn{font-weight:600;font-family:var(--fm);font-size:.82rem}
+.vsdesc{color:var(--muted);font-size:.8rem;margin-left:auto}
+/* CONTACT */
+#contact{padding-bottom:140px}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.cc{padding:36px;border-radius:var(--rl);background:linear-gradient(160deg,var(--glass2),var(--glass));border:1px solid var(--border)}
+.ci{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.ci:last-child{border-bottom:0}
+.cicon{width:44px;height:44px;border-radius:14px;background:var(--glass);border:1px solid var(--border);display:grid;place-items:center;font-size:1.1rem;flex-shrink:0}
+.ci strong{display:block;font-size:.88rem;margin-bottom:4px;font-family:var(--ff)}
+.ci span{font-size:.85rem;color:var(--muted)}
+.ci a:hover{color:var(--accent)}
+.cib{padding:28px;border-radius:var(--rl);background:linear-gradient(160deg,rgba(0,229,255,.05),rgba(124,109,250,.05));border:1px solid rgba(0,229,255,.15)}
+.cib h3{font-size:1.2rem;margin-bottom:8px}
+.cib p{font-size:.88rem;color:var(--muted);line-height:1.8}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(57,255,139,.08);border:1px solid rgba(57,255,139,.2);color:var(--accent3);font-size:.82rem;font-weight:600;margin-top:20px}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent3);animation:pu 2s infinite}
+/* MODAL */
+.ov{position:fixed;inset:0;z-index:500;background:rgba(5,8,16,.9);backdrop-filter:blur(20px);display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.ov.op{opacity:1;pointer-events:all}
+.mo{width:100%;max-width:1200px;margin:auto;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);overflow:hidden;transform:translateY(20px);transition:transform .25s ease;box-shadow:var(--shadow)}
+.ov.op .mo{transform:none}
+.mh{display:flex;align-items:flex-start;justify-content:space-between;padding:28px 32px;border-bottom:1px solid var(--border);background:rgba(8,13,26,.95);position:sticky;top:0;z-index:10;backdrop-filter:blur(16px)}
+.mt{font-size:.72rem;font-weight:700;color:var(--accent);font-family:var(--fm);letter-spacing:.08em;margin-bottom:8px}
+.mti{font-size:1.6rem;line-height:1.1;letter-spacing:-.03em}
+.ms{font-size:.88rem;color:var(--muted);margin-top:6px}
+.cbtn{width:40px;height:40px;border-radius:12px;background:var(--glass);border:1px solid var(--border);color:var(--muted);font-size:1.1rem;flex-shrink:0;transition:background var(--t),color var(--t);display:grid;place-items:center}
+.cbtn:hover{background:var(--glass2);color:var(--text)}
+.mb{padding:32px}
+.pl{display:flex;flex-direction:column;gap:24px}
+.ptop{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pleft,.pright{border-radius:var(--r);border:1px solid var(--border);background:var(--glass);padding:24px}
+.pleft h4,.pright h4{font-size:1rem;margin-bottom:14px;color:var(--accent);font-family:var(--ff)}
+.pbot{border-radius:var(--r);border:1px solid var(--border);background:var(--bg);overflow:hidden}
+.il{display:flex;flex-direction:column;gap:4px}
+.ir{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)}
+.ir:last-child{border-bottom:0}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px}
+.ir p{font-size:.88rem;color:var(--muted);line-height:1.7}
+.scrs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.si{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:transform var(--t)}
+.si:hover{transform:scale(1.02)}
+.si img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.sl{padding:6px 10px;font-size:.72rem;color:var(--muted);font-family:var(--fm)}
+.cb{background:var(--bg)}
+.ch{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);background:var(--glass)}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%}
+.dots span:nth-child(1){background:#ff5f57}
+.dots span:nth-child(2){background:#ffbd2e}
+.dots span:nth-child(3){background:#28c840}
+.cf{font-family:var(--fm);font-size:.8rem;color:var(--muted);flex:1}
+.cl{padding:3px 10px;border-radius:6px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:var(--accent);font-size:.72rem;font-weight:700;font-family:var(--fm)}
+.cb pre{padding:22px 24px;font-family:var(--fm);font-size:.82rem;line-height:1.75;color:#c9d6f0;overflow-x:auto;tab-size:2}
+.bls{padding:18px 24px;border-top:1px solid var(--border);background:var(--glass);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bll{font-size:.72rem;color:var(--muted2);font-family:var(--fm);letter-spacing:.08em;margin-right:4px}
+.blb{padding:5px 12px;border-radius:8px;font-size:.75rem;font-weight:700;font-family:var(--fm);background:rgba(57,255,139,.08);border:1px solid rgba(57,255,139,.18);color:var(--accent3)}
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:.82rem;color:var(--muted2)}
+
+/* LIGHTBOX */
+.si{cursor:zoom-in}
+.si:hover{transform:scale(1.04)}
+.lb{position:fixed;inset:0;z-index:999;background:rgba(2,4,10,.96);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb img{max-width:92vw;max-height:88vh;border-radius:16px;border:1px solid var(--border2);box-shadow:0 40px 100px rgba(0,0,0,.7);transform:scale(.92);transition:transform .25s ease}
+.lb.open img{transform:scale(1)}
+.lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid var(--border2);color:var(--text);font-size:1.1rem;display:grid;place-items:center;cursor:pointer}
+.lb-label{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);padding:8px 18px;border-radius:999px;background:rgba(0,0,0,.6);border:1px solid var(--border);font-size:.82rem;color:var(--muted);font-family:var(--fm)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hg,.ptop,.vs,.cg{grid-template-columns:1fr}
+  .pg,.skg{grid-template-columns:repeat(2,1fr)}
+  .tl::before{left:89px}.ti{grid-template-columns:80px 28px 1fr}
+}
+@media(max-width:740px){
+  nav{display:none}.mbtn{display:grid}.hbtn{display:none}
+  .pg,.skg{grid-template-columns:1fr}
+  .hc{padding:28px}
+  .tl::before{left:71px}.ti{grid-template-columns:60px 24px 1fr}
+}
+</style>
+</head>
+<body>
+<div class="bgl"></div>
+<div class="bgg"></div>
+
+<header id="H">
+  <div class="wrap hdr">
+    <div class="brand">
+      <div class="av">AN</div>
+      <div><div class="bn">Ahmed Nasri</div><div class="bs">BTS SIO SLAM · Lycée Ozenne · 2026</div></div>
+    </div>
+    <nav>
+      <a href="#hero">Accueil</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#competences">Compétences</a>
+      <a href="#veille">Veille</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="#realisations" class="hbtn">Mes projets →</a>
+      <button class="mbtn" id="MB" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mnav" id="MN">
+  <a href="#hero">Accueil</a><a href="#parcours">Parcours</a><a href="#realisations">Réalisations</a>
+  <a href="#competences">Compétences</a><a href="#veille">Veille</a><a href="#contact">Contact</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hg">
+      <div class="hc card rv">
+        <div class="hbadge">✦ BTS SIO option SLAM — Session 2026</div>
+        <h1><span class="gr">Ahmed</span><br>Nasri</h1>
+        <p>Étudiant en BTS SIO option SLAM au lycée Ozenne de Toulouse. 2 ans de formation, 2 stages en entreprise, et 6 blocs de compétences validés.</p>
+        <div class="ha">
+          <a href="#realisations" class="bp">Voir mes réalisations</a>
+          <a href="#parcours" class="bg">Mon parcours</a>
+        </div>
+        <div class="hst">
+          <div class="st"><strong class="gr">6/6</strong><span>Blocs validés</span></div>
+          <div class="st"><strong class="gr">9+</strong><span>Projets</span></div>
+          <div class="st"><strong class="gr">2</strong><span>Stages</span></div>
+        </div>
+      </div>
+      <div class="card hs rv d1" style="overflow:hidden;border-radius:var(--rl)">
+        <div class="hfh">
+          <div class="fi">⚡</div>
+          <h3>Stack<br>technique</h3>
+          <p>Langages, frameworks et outils mobilisés</p>
+        </div>
+        <div class="fg">
+          <div class="fc"><strong>Python</strong><span>Flask · SQLite</span></div>
+          <div class="fc"><strong>PHP</strong><span>MySQL · sessions</span></div>
+          <div class="fc"><strong>Java</strong><span>Swing · MVC · XML</span></div>
+          <div class="fc"><strong>Kotlin</strong><span>Android Studio</span></div>
+          <div class="fc"><strong>HTML/CSS</strong><span>Intégration · CdC</span></div>
+          <div class="fc"><strong>SQL</strong><span>MariaDB · SQLite</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ew">Parcours</div>
+      <h2>Itinéraire<br><span class="gr">professionnel</span></h2>
+      <p style="color:var(--muted);margin-top:14px;font-size:1rem;max-width:620px">Du baccalauréat jusqu'à la fin du BTS SIO SLAM — formation, stages et projets.</p>
+    </div>
+    <div class="tl rv" style="margin-top:48px">
+      <div class="ti">
+        <div class="td">2023</div>
+        <div class="tw"><div class="tdot g"></div></div>
+        <div class="tc"><h4>🎓 Obtention du Baccalauréat</h4><p>Obtention du baccalauréat — point de départ du parcours dans l'informatique et le développement.</p><span class="tbg g">Bac obtenu</span></div>
+      </div>
+      <div class="ti">
+        <div class="td">Sept. 2023</div>
+        <div class="tw"><div class="tdot c"></div></div>
+        <div class="tc"><h4>🏫 BTS SIO SLAM — 1ère année · Lycée Ozenne</h4><p>Découverte du développement web et applicatif. Premiers projets : PHP/MySQL (GSB), Java/Swing/XML (M2L), application mobile Kotlin/Android (AMAP), gestionnaire de tickets GLPI. Introduction à l'architecture MVC et aux bases de données relationnelles.</p><span class="tbg c">Ozenne · Toulouse</span></div>
+      </div>
+      <div class="ti">
+        <div class="td">Printemps 2024</div>
+        <div class="tw"><div class="tdot o"></div></div>
+        <div class="tc"><h4>🏢 Stage 1ère année — Booster Informatique</h4><p>Stage de maintenance et support utilisateurs en entreprise. Diagnostic de pannes, déploiement de postes Windows, création d'un script PowerShell avec Winget pour automatiser les installations, utilisation de GLPI pour la gestion des tickets et du parc informatique.</p><span class="tbg o">Windows · PowerShell · GLPI</span></div>
+      </div>
+      <div class="ti">
+        <div class="td">Sept. 2024</div>
+        <div class="tw"><div class="tdot c"></div></div>
+        <div class="tc"><h4>🏫 BTS SIO SLAM — 2ème année · Lycée Ozenne</h4><p>Approfondissement du développement : site vitrine HTML/CSS réalisé sur cahier des charges du BTS SAM (collab inter-classes), veille technologique cybersécurité avec Feedly, consolidation des compétences sur les projets formation. Préparation des épreuves E4, E5, E6.</p><span class="tbg c">HTML/CSS · Kotlin · Java · Veille</span></div>
+      </div>
+      <div class="ti">
+        <div class="td">Printemps 2025</div>
+        <div class="tw"><div class="tdot p"></div></div>
+        <div class="tc"><h4>🏢 Stage 2ème année — Projet Photomaton</h4><p>Développement complet d'une application web Python/Flask/SQLite pour un système photomaton IA. Gestion des utilisateurs, droits, prompts, images générées par IA. Accès au serveur Linux distant via Tailscale + PuTTY + GitHub. Déploiement et débogage en conditions réelles.</p><span class="tbg p">Python · Flask · SQLite · Linux</span></div>
+      </div>
+      <div class="ti">
+        <div class="td">Juin 2026</div>
+        <div class="tw"><div class="tdot g"></div></div>
+        <div class="tc"><h4>🏆 Épreuves finales BTS SIO SLAM</h4><p>Passage des épreuves E4 (support), E5 (développement) et E6 (veille & développement professionnel). Soutenance orale avec ce portfolio comme support. 6 blocs de compétences validés sur 6.</p><span class="tbg g">6/6 blocs validés ✅</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ew">Réalisations</div>
+      <h2>Projets de formation<br><span class="gr">& stages</span></h2>
+      <p style="color:var(--muted);margin-top:14px;font-size:1rem;max-width:600px">Cliquez sur une carte pour voir le contexte, les captures et le code.</p>
+    </div>
+    <div class="fb rv" style="margin-top:32px">
+      <button class="fl act" data-f="all">Tout voir</button>
+      <button class="fl" data-f="stage1">Stage 1</button>
+      <button class="fl" data-f="stage2">Stage 2</button>
+      <button class="fl" data-f="formation">Formation</button>
+    </div>
+    <div class="sw rv">
+      <span style="color:var(--muted2);font-family:var(--fm);font-size:.9rem">⌕</span>
+      <input id="SI" type="text" placeholder="Rechercher un projet, un langage…">
+    </div>
+    <div class="pg" id="PG">
+
+      <!-- STAGE 2 -->
+      <div class="pc rv" data-filter="stage2" data-search="python flask sqlite utilisateurs droits stage photomaton" data-key="s2-users">
+        <div class="pt" style="background:linear-gradient(135deg,#0d1a2e,#0a1220)"><span class="pti">👥</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag pu">Python</span><span class="tag pu">Flask</span></div><div class="ptit">Gestion des utilisateurs & droits</div><div class="pdes">Création de comptes, rôles, contrôle d'accès par session — projet Photomaton.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B2</span><span class="bl">B3</span><span class="bl">B4</span><span class="bl">B5</span><span class="bl">B6</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d1" data-filter="stage2" data-search="python flask prompts sqlite stage photomaton" data-key="s2-prompts">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1828,#080f1c)"><span class="pti">✍️</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag pu">Python</span><span class="tag go">Flask</span></div><div class="ptit">Gestion des prompts</div><div class="pdes">CRUD complet des consignes IA — ajout, modification, suppression, association pose.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B2</span><span class="bl">B4</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d2" data-filter="stage2" data-search="sqlite bdd base données schéma python stage photomaton" data-key="s2-bdd">
+        <div class="pt" style="background:linear-gradient(135deg,#0b1420,#091018)"><span class="pti">🗄️</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag go">SQLite</span></div><div class="ptit">Conception BDD SQLite</div><div class="pdes">Modélisation et création de la base Photomaton — users, roles, prompts, images.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B4</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv" data-filter="stage2" data-search="python flask rôles affichage conditionnel jinja stage" data-key="s2-roles">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1020,#070c16)"><span class="pti">🔐</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag pu">Jinja</span></div><div class="ptit">Affichage conditionnel par rôle</div><div class="pdes">Interface adaptée au profil — sécurisé côté serveur et côté template Jinja.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B3</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d1" data-filter="stage2" data-search="debug logs erreur flask python correction stage" data-key="s2-debug">
+        <div class="pt" style="background:linear-gradient(135deg,#150a0a,#100808)"><span class="pti">🐛</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag r">Debug</span></div><div class="ptit">Correction de dysfonctionnements</div><div class="pdes">Identification et résolution de bugs Flask — logs, traçage d'erreurs, validation.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B2</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d2" data-filter="stage2" data-search="arborescence structure fichiers flask python stage" data-key="s2-arbo">
+        <div class="pt" style="background:linear-gradient(135deg,#0c1020,#080c16)"><span class="pti">📁</span></div>
+        <div class="pb"><div class="ptags"><span class="tag c">Stage 2</span><span class="tag pu">Python</span></div><div class="ptit">Arborescence du projet Photomaton</div><div class="pdes">Organisation des fichiers Flask — routes, templates, base SQLite, images générées.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B4</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <!-- STAGE 1 -->
+      <div class="pc rv" data-filter="stage1" data-search="windows diagnostic panne maintenance support glpi stage booster" data-key="s1-diag">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1418,#080e12)"><span class="pti">🔧</span></div>
+        <div class="pb"><div class="ptags"><span class="tag g">Stage 1</span><span class="tag go">Windows</span><span class="tag go">GLPI</span></div><div class="ptit">Diagnostic de pannes</div><div class="pdes">Support utilisateur, diagnostic de dysfonctionnements matériels et logiciels.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B2</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d1" data-filter="stage1" data-search="powershell winget déploiement installation script windows stage" data-key="s1-powershell">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1220,#08101a)"><span class="pti">⚙️</span></div>
+        <div class="pb"><div class="ptags"><span class="tag g">Stage 1</span><span class="tag c">PowerShell</span></div><div class="ptit">Déploiement automatisé (Winget)</div><div class="pdes">Script PowerShell d'installation en série — socle applicatif standard, mode silencieux.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B4</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <!-- FORMATION -->
+      <div class="pc rv d2" data-filter="formation" data-search="php mysql gsb frais déplacement visiteur comptable formation" data-key="f-gsb">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1820,#081218)"><span class="pti">💼</span></div>
+        <div class="pb"><div class="ptags"><span class="tag go">Formation</span><span class="tag r">PHP</span><span class="tag go">MySQL</span></div><div class="ptit">Application GSB — Gestion des frais</div><div class="pdes">PHP/MySQL — deux profils, sessions, hachage bcrypt, frais forfaitisés et hors forfait.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B4</span><span class="bl">B5</span><span class="bl">B6</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv" data-filter="formation" data-search="kotlin android amap livraison mobile formation" data-key="f-amap">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1820,#081418)"><span class="pti">📱</span></div>
+        <div class="pb"><div class="ptags"><span class="tag go">Formation</span><span class="tag g">Kotlin</span><span class="tag g">Android</span></div><div class="ptit">Application mobile AMAP</div><div class="pdes">Android Kotlin — auth SHA-256, liste tournées, détail livraison, tri, notes persistées.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B4</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d1" data-filter="formation" data-search="java swing xml mvc m2l escrime formation" data-key="f-m2l">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1020,#080c18)"><span class="pti">🖥️</span></div>
+        <div class="pb"><div class="ptags"><span class="tag go">Formation</span><span class="tag pu">Java</span><span class="tag c">MVC</span></div><div class="ptit">Application M2L — Gestion club</div><div class="pdes">Java Swing MVC — club d'escrime, lecture XML, calcul tarifs FFE, gestion adhérents.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B2</span><span class="bl">B4</span><span class="bl">B5</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv d2" data-filter="formation" data-search="html css site web bijoux cahier des charges client bts sam collaboration formation" data-key="f-bijoux">
+        <div class="pt" style="background:linear-gradient(135deg,#1a0a20,#120818)"><span class="pti">💎</span></div>
+        <div class="pb"><div class="ptags"><span class="tag go">Formation</span><span class="tag r">HTML</span><span class="tag r">CSS</span></div><div class="ptit">Site web Bijoux — Collab BTS SAM</div><div class="pdes">Site vitrine réalisé sur cahier des charges fourni par la classe BTS SAM jouant le rôle client.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B3</span><span class="bl">B6</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+      <div class="pc rv" data-filter="formation" data-search="glpi tickets inventaire formation" data-key="f-glpi">
+        <div class="pt" style="background:linear-gradient(135deg,#0a1418,#080e12)"><span class="pti">🎫</span></div>
+        <div class="pb"><div class="ptags"><span class="tag go">Formation</span><span class="tag c">GLPI</span></div><div class="ptit">Tickets & inventaire GLPI</div><div class="pdes">Gestion des incidents et du parc informatique — tickets, suivi, inventaire.</div></div>
+        <div class="pft"><div class="blcs"><span class="bl">B1</span><span class="bl">B2</span></div><span class="oa">→ voir</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ew">Compétences</div>
+      <h2>Langages,<br><span class="gr">outils & notions</span></h2>
+    </div>
+    <div class="skg" style="margin-top:40px">
+      <div class="skc rv"><div class="ski" style="background:rgba(0,229,255,.08);border-color:rgba(0,229,255,.2)">💻</div><h3>Langages & frameworks</h3><div class="pills"><span class="pill">Python</span><span class="pill">Flask</span><span class="pill">PHP</span><span class="pill">Java</span><span class="pill">Kotlin</span><span class="pill">SQL</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span></div></div>
+      <div class="skc rv d1"><div class="ski" style="background:rgba(124,109,250,.08);border-color:rgba(124,109,250,.2)">🧰</div><h3>Outils & environnements</h3><div class="pills"><span class="pill">SQLite</span><span class="pill">MariaDB</span><span class="pill">GLPI</span><span class="pill">Git</span><span class="pill">VS Code</span><span class="pill">IntelliJ</span><span class="pill">Android Studio</span><span class="pill">PuTTY</span><span class="pill">Tailscale</span></div></div>
+      <div class="skc rv d2"><div class="ski" style="background:rgba(57,255,139,.08);border-color:rgba(57,255,139,.2)">📘</div><h3>Notions clés</h3><div class="pills"><span class="pill">Architecture MVC</span><span class="pill">Gestion des rôles</span><span class="pill">Bcrypt / SHA-256</span><span class="pill">Sessions PHP/Flask</span><span class="pill">Débogage & logs</span><span class="pill">Veille RSS / Feedly</span></div></div>
+    </div>
+    <div class="rv" style="margin-top:32px">
+      <div class="tw2">
+        <table class="dt">
+          <thead><tr><th>Bloc</th><th>Intitulé</th><th>Validations</th></tr></thead>
+          <tbody>
+            <tr><td>B1</td><td>Gérer le patrimoine informatique</td><td>×6 ✅</td></tr>
+            <tr><td>B2</td><td>Répondre aux incidents et demandes</td><td>×4 ✅</td></tr>
+            <tr><td>B3</td><td>Développer la présence en ligne</td><td>×2 ✅</td></tr>
+            <tr><td>B4</td><td>Travailler en mode projet</td><td>×7 ✅</td></tr>
+            <tr><td>B5</td><td>Mettre à disposition un service informatique</td><td>×8 ✅</td></tr>
+            <tr><td>B6</td><td>Organiser son développement professionnel</td><td>×3 ✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VEILLE -->
+<section id="veille">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ew">Veille technologique</div>
+      <h2>Cybersécurité &<br><span class="gr">vulnérabilités</span></h2>
+    </div>
+    <div class="vs" style="margin-top:36px">
+      <div class="vl rv">
+        <h3 style="font-size:1.1rem;margin-bottom:10px">Sujet de veille — Bloc B6</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.8;margin-bottom:20px">Veille orientée cybersécurité — menaces, CVE, bonnes pratiques de développement sécurisé. Évaluée à l'épreuve E6 du BTS SIO.</p>
+        <div class="vsr">
+          <div class="vsi"><div class="vsd" style="background:var(--accent)"></div><span class="vsn">GBHackers</span><span class="vsdesc">CVE · malwares · attaques</span></div>
+          <div class="vsi"><div class="vsd" style="background:var(--accent3)"></div><span class="vsn">CERT-FR</span><span class="vsdesc">Alertes gov. officielles</span></div>
+          <div class="vsi"><div class="vsd" style="background:var(--accent2)"></div><span class="vsn">The CyberWire</span><span class="vsdesc">Veille anglophone</span></div>
+          <div class="vsi"><div class="vsd" style="background:var(--gold)"></div><span class="vsn">Intrinsec · Flux Sécurité</span><span class="vsdesc">Sources francophones</span></div>
+          <div class="vsi"><div class="vsd" style="background:var(--muted)"></div><span class="vsn">CNIL Newsletter · Le code a changé</span><span class="vsdesc">Newsletter · Podcast</span></div>
+        </div>
+        <div style="margin-top:20px;padding:14px;border-radius:12px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.15)">
+          <p style="font-size:.82rem;color:var(--accent);font-family:var(--fm)">Agrégateur : Feedly — méthode PULL — 344 articles collectés</p>
+        </div>
+        <a href="https://feedly.com/i/my/me" target="_blank" class="bg" style="margin-top:16px;display:inline-flex">👁 Voir ma veille Feedly</a>
+      </div>
+      <div class="vr rv d1">
+        <img src="veille.png" alt="Capture Feedly" style="width:100%;display:block">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <div class="ew">Contact</div>
+      <h2>Me contacter<br><span class="gr">& me retrouver</span></h2>
+      <p style="color:var(--muted);margin-top:14px;font-size:1rem;max-width:600px">Disponible pour toute prise de contact dans le cadre du BTS, d'un stage ou d'un premier emploi.</p>
+    </div>
+    <div class="cg" style="margin-top:40px">
+      <div class="cc rv">
+        <h3 style="font-size:1.1rem;margin-bottom:6px">Coordonnées</h3>
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:24px">N'hésitez pas à me contacter directement.</p>
+        <div class="ci"><div class="cicon">📧</div><div><strong>Email</strong><span><a href="mailto:ahmed.nasri@lycee-ozenne.fr">ahmed.nasri@lycee-ozenne.fr</a></span></div></div>
+        <div class="ci"><div class="cicon">🏫</div><div><strong>Établissement</strong><span>Lycée Ozenne — Toulouse (31)</span></div></div>
+        <div class="ci"><div class="cicon">💻</div><div><strong>GitHub</strong><span><a href="https://github.com/" target="_blank">github.com/ahmed-nasri</a></span></div></div>
+        <div class="ci"><div class="cicon">🌐</div><div><strong>Portfolio</strong><span>Ce site — support de soutenance E5</span></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="cib rv d1">
+          <h3>À propos de ce portfolio</h3>
+          <p>Ce portfolio a été conçu pour l'épreuve E5 du BTS SIO SLAM. Il présente l'ensemble de mes réalisations professionnelles avec pour chaque projet : le contexte métier, les captures d'interface et les extraits de code.</p>
+          <p style="margin-top:12px">Accessible en ligne, utilisé comme support lors des soutenances orales.</p>
+          <div class="avail">Disponible pour le jury E5 — Session 2026</div>
+        </div>
+        <div class="cc rv d2" style="padding:28px">
+          <h3 style="font-size:1rem;margin-bottom:16px">Formation & localisation</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem"><span style="color:var(--muted)">Formation</span><span style="font-weight:600;font-family:var(--fm)">BTS SIO SLAM</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem"><span style="color:var(--muted)">Lycée</span><span style="font-weight:600;font-family:var(--fm)">Ozenne, Toulouse</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem"><span style="color:var(--muted)">Session</span><span style="font-weight:600;font-family:var(--fm)">2026</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.85rem"><span style="color:var(--muted)">Blocs validés</span><span style="font-weight:600;font-family:var(--fm);color:var(--accent3)">6 / 6 ✅</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><p>Portfolio BTS SIO SLAM — Ahmed Nasri — Lycée Ozenne Toulouse — Session 2026</p></div></footer>
+
+<!-- MODALE -->
+<div class="ov" id="OV">
+  <div class="mo" id="MO">
+    <div class="mh">
+      <div><div class="mt" id="MT">—</div><div class="mti" id="MTI">—</div><div class="ms" id="MS">—</div></div>
+      <button class="cbtn" id="CB">✕</button>
+    </div>
+    <div class="mb" id="MB2"></div>
+  </div>
+</div>
+
+<script>
+  const lb=document.createElement('div');
+lb.className='lb';
+lb.innerHTML='<button class="lb-close" id="LBC">✕</button><img id="LBI" src="" alt=""><div class="lb-label" id="LBL"></div>';
+document.body.appendChild(lb);
+const lbi=document.getElementById('LBI');
+const lbl=document.getElementById('LBL');
+function openLB(src,label){lbi.src=src;lbl.textContent=label||'';lb.classList.add('open');document.body.classList.add('locked')}
+function closeLB(){lb.classList.remove('open');document.body.classList.remove('locked');setTimeout(()=>{lbi.src=''},300)}
+document.getElementById('LBC').addEventListener('click',closeLB);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLB()});
+const MD={
+  's2-users':{tag:'Stage 2 · Photomaton · Python / Flask',title:'Gestion des utilisateurs & droits',sub:'Création de comptes, rôles, sécurisation des routes Flask',blocs:['B1','B2','B3','B4','B5','B6'],
+    left:{t:'Contexte & objectif',i:['L\'application nécessite plusieurs types d\'utilisateurs (admin, user).','Chaque compte est associé à un rôle stocké en base SQLite.','Les routes Flask sont protégées par un décorateur @login_required.','Les mots de passe sont hachés avec Werkzeug (generate_password_hash).','Le rôle est lu depuis la session à chaque requête pour filtrer les accès.']},
+    right:{t:'Captures de l\'interface',s:[{src:'connexion.png',l:'Page connexion'},{src:'gestionutilisateur.png',l:'Gestion utilisateurs'},{src:'mdp_hash.png',l:'MDP hashés'},{src:'indexx.png',l:'Dashboard admin'},{src:'index_lecture.png',l:'Vue lecture'},{src:'index_modif.png',l:'Vue modif'}]},
+    code:{f:'routes/users.py',l:'Python / Flask',c:`@app.route('/users')\n@login_required\ndef users():\n    if session.get('role') != 'admin':\n        flash('Accès refusé', 'error')\n        return redirect(url_for('dashboard'))\n    rows = get_db().execute(\n        'SELECT u.id, u.username, r.name AS role '\n        'FROM users u JOIN roles r ON r.id = u.role_id'\n    ).fetchall()\n    return render_template('users.html', users=rows)\n\n@app.route('/users/create', methods=['GET','POST'])\n@login_required\ndef create_user():\n    if request.method == 'POST':\n        username = request.form.get('username','').strip()\n        password = request.form.get('password','').strip()\n        role_id  = request.form.get('role_id')\n        if username and password and role_id:\n            h = generate_password_hash(password)\n            db = get_db()\n            db.execute('INSERT INTO users(username,password_hash,role_id) VALUES(?,?,?)',(username,h,role_id))\n            db.commit()\n            flash('Utilisateur créé','success')\n            return redirect(url_for('users'))\n    return render_template('create_user.html')`}},
+  's2-prompts':{tag:'Stage 2 · Photomaton · Python / Flask',title:'Gestion des prompts',sub:'CRUD des consignes IA — création, modification, suppression, association',blocs:['B1','B2','B4','B5'],
+    left:{t:'Contexte fonctionnel',i:['Les prompts pilotent le contenu généré par l\'IA dans le photomaton.','Chaque prompt a un nom, une instruction positive et une instruction négative.','L\'interface permet de créer, modifier, supprimer et associer un prompt à une pose.','La route /prompts liste tous les prompts triés par id décroissant.','La création enregistre l\'id de l\'utilisateur créateur (created_by).']},
+    right:{t:'Captures de l\'interface',s:[{src:'acceuill.png',l:'Liste prompts'},{src:'modifier.png',l:'Modifier'},{src:'création_prompt.png',l:'Créer'},{src:'pose.png',l:'Association pose'}]},
+    code:{f:'routes/prompts.py',l:'Python / Flask',c:`@app.route('/prompts')\n@login_required\ndef list_prompts():\n    prompts = get_db().execute(\n        'SELECT id,title,content FROM prompts ORDER BY id DESC'\n    ).fetchall()\n    return render_template('prompts.html',prompts=prompts)\n\n@app.route('/prompts/create',methods=['GET','POST'])\n@login_required\ndef create_prompt():\n    if request.method == 'POST':\n        title   = request.form.get('title','').strip()\n        content = request.form.get('content','').strip()\n        if title and content:\n            db = get_db()\n            db.execute(\n                'INSERT INTO prompts(title,content,created_by) VALUES(?,?,?)',\n                (title,content,session.get('user_id'))\n            )\n            db.commit()\n            flash('Prompt ajouté','success')\n            return redirect(url_for('list_prompts'))\n    return render_template('create_prompt.html')`}},
+  's2-bdd':{tag:'Stage 2 · Photomaton · SQLite',title:'Conception de la base de données SQLite',sub:'Modélisation, création des tables, relations et persistance',blocs:['B1','B4'],
+    left:{t:'Structure de la base',i:['Base SQLite légère — adaptée à un projet embarqué sur serveur Linux.','Table users : comptes avec hash du MDP et rôle associé.','Table roles : types de profils (admin / user).','Table prompts : consignes IA avec lien vers le créateur.','Table images : chemin des fichiers générés avec prompt associé.','Clés étrangères pour maintenir la cohérence entre les entités.']},
+    right:{t:'Captures de la base',s:[{src:'schemabdd.png',l:'Schéma BDD'},{src:'table_prompt.png',l:'Table prompts'},{src:'tablea_user.png',l:'Table users'},{src:'mdp_hash.png',l:'Hash MDP'}]},
+    code:{f:'schema.sql',l:'SQL',c:`CREATE TABLE roles(\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  name TEXT NOT NULL UNIQUE\n);\nCREATE TABLE users(\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  username TEXT NOT NULL UNIQUE,\n  password_hash TEXT NOT NULL,\n  role_id INTEGER NOT NULL,\n  FOREIGN KEY(role_id) REFERENCES roles(id)\n);\nCREATE TABLE prompts(\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  title TEXT NOT NULL,\n  content TEXT NOT NULL,\n  created_by INTEGER,\n  FOREIGN KEY(created_by) REFERENCES users(id)\n);\nCREATE TABLE images(\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  image_path TEXT NOT NULL,\n  prompt_id INTEGER,\n  created_at TEXT DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY(prompt_id) REFERENCES prompts(id)\n);`}},
+  's2-roles':{tag:'Stage 2 · Photomaton · Jinja / Flask',title:'Affichage conditionnel selon les rôles',sub:'Interface adaptée au profil — protégée côté serveur ET côté template',blocs:['B3','B5'],
+    left:{t:'Principe technique',i:['Un user simple ne voit pas les boutons d\'administration.','La vérification est faite côté template Jinja ET côté route Flask.','Cela évite qu\'un user contourne l\'UI en tapant l\'URL directement.','Le rôle est stocké en session à la connexion et relu à chaque requête.','Boutons admin réservés au rôle \'admin\' uniquement.']},
+    right:{t:'Captures comparatives',s:[{src:'indexx.png',l:'Vue admin'},{src:'index_lecture.png',l:'Vue lecture'},{src:'index_modif.png',l:'Vue modif'}]},
+    code:{f:'templates/dashboard.html',l:'HTML / Jinja',c:`{% if session.role == 'admin' %}\n  <a href="{{ url_for('users') }}" class="btn">\n    Gérer les utilisateurs\n  </a>\n  <a href="{{ url_for('admin_logs') }}" class="btn">\n    Voir les logs\n  </a>\n{% endif %}\n\n<a href="{{ url_for('list_prompts') }}" class="btn">\n  Voir les prompts\n</a>`}},
+  's2-debug':{tag:'Stage 2 · Photomaton · Python / Flask',title:'Correction de dysfonctionnements',sub:'Identification de bugs, logs, traçage d\'erreurs et validation',blocs:['B2','B5'],
+    left:{t:'Démarche de debug',i:['Reproduire le bug pour comprendre dans quel contexte il apparaît.','Ajouter des print() ou app.logger pour tracer les valeurs.','Identifier la route ou la fonction Flask concernée.','Corriger la logique puis vérifier que le scénario passe bien.','Contrôler la cohérence avec la base SQLite après correction.']},
+    right:{t:'Captures de debug',s:[{src:'log_supression_succes.png',l:'Log suppression OK'},{src:'debug_valeurs.png',l:'Debug valeurs'},{src:'erreur_trace.png',l:'Traceback erreur'},{src:'debug_corrige.png',l:'Après correction'}]},
+    code:{f:'debug_generation.py',l:'Python / Flask',c:`try:\n    prompt_id = request.form.get("prompt_id")\n    print("Prompt ID reçu :", prompt_id)\n    image_path = generate_image(prompt_id)\n    save_generated_image(image_path, prompt_id)\n    print("Image générée :", image_path)\nexcept Exception as e:\n    app.logger.error(f"Erreur génération : {e}")\n    flash("Une erreur est survenue", "error")`}},
+  's2-arbo':{tag:'Stage 2 · Photomaton · Python / Flask',title:'Arborescence du projet Photomaton',sub:'Organisation des fichiers, séparation des responsabilités',blocs:['B4'],
+    left:{t:'Organisation des dossiers',i:['Dossier routes/ : chaque fonctionnalité a son propre fichier .py.','Dossier templates/ : pages HTML Jinja, une par route.','Dossier ia_images/ : images générées stockées sur le serveur.','Fichier app.db : base SQLite unique du projet.','Structure MVC implicite — séparation données / logique / affichage.']},
+    right:{t:'Arborescence',s:[{src:'arborescence.png',l:'Structure du projet'}]},
+    code:{f:'app.py',l:'Python / Flask',c:`from flask import Flask\nfrom routes.users   import users_bp\nfrom routes.prompts import prompts_bp\nfrom routes.images  import images_bp\nfrom database import init_db\n\napp = Flask(__name__)\napp.secret_key = 'votre_clé_secrète'\n\napp.register_blueprint(users_bp)\napp.register_blueprint(prompts_bp)\napp.register_blueprint(images_bp)\n\nif __name__ == '__main__':\n    init_db()\n    app.run(debug=True)`}},
+  's1-diag':{tag:'Stage 1 · Booster Informatique · Windows / GLPI',title:'Diagnostic de pannes sur postes',sub:'Support utilisateur, identification des dysfonctionnements',blocs:['B1','B2'],
+    left:{t:'Démarche suivie',i:['Observer le symptôme constaté sur le poste (lenteur, crash, affichage…).','Tester les éléments les plus évidents en premier.','Différencier un problème logiciel d\'un problème matériel.','Comparer avec un poste fonctionnel si nécessaire.','Valider le comportement normal après intervention.','Saisir le ticket dans GLPI pour traçabilité.']},
+    right:{t:'Capture de preuve',s:[{src:'Vérification_de_connexions_réseau_sur_postes.png',l:'Vérification réseau'}]},
+    code:{f:'procedure_diagnostic.txt',l:'Procédure',c:`ÉTAPES DE DIAGNOSTIC\n\n1. Identifier le symptôme principal\n2. Vérifier l'alimentation et le démarrage\n3. Contrôler les journaux d'événements Windows\n4. Distinguer problème logiciel / matériel\n5. Intervenir et valider après correction\n6. Saisir le ticket dans GLPI`}},
+  's1-powershell':{tag:'Stage 1 · Booster Informatique · PowerShell / Winget',title:'Déploiement automatisé par script PowerShell',sub:'Installation en série du socle applicatif standard',blocs:['B1','B4','B5'],
+    left:{t:'Objectif & méthode',i:['Standardiser l\'installation du socle logiciel sur chaque nouveau poste.','Utilisation du gestionnaire de paquets Windows Winget.','Script PowerShell .ps1 exécuté en mode administrateur.','Installations silencieuses (--silent) — aucune interaction requise.','Acceptation automatique des licences (--accept-package-agreements).','Gain de temps considérable par rapport à une installation manuelle.']},
+    right:{t:'Capture du script',s:[{src:'preuves_logicielle.png',l:'Script PowerShell'}]},
+    code:{f:'install_socle.ps1',l:'PowerShell',c:`$apps = @(\n    "Google.Chrome",\n    "Mozilla.Firefox",\n    "7zip.7zip",\n    "VideoLAN.VLC",\n    "Notepad++.Notepad++"\n)\nforeach ($app in $apps) {\n    Write-Host "Installation de $app ..." -ForegroundColor Yellow\n    winget install $app --silent --accept-package-agreements\n    Write-Host "$app OK" -ForegroundColor Green\n}`}},
+  'f-gsb':{tag:'Formation · PHP / MySQL · Application web',title:'Application GSB — Gestion des frais',sub:'PHP / MySQL — deux profils, sessions, hachage bcrypt',blocs:['B4','B5','B6'],
+    left:{t:'Présentation du projet',i:['Projet basé sur un vrai cahier des charges GSB (visiteurs médicaux).','Deux profils : visiteur (saisie) et comptable (traitement).','Gestion des sessions PHP — rôle stocké à la connexion, vérifié à chaque page.','Frais forfaitisés : repas 29€, nuitée 80€, km 0.62€ — saisie en quantité.','Frais hors forfait : date + libellé + montant + justificatif à fournir.','MDP hashés en bcrypt — comparaison de hash, jamais en clair.']},
+    right:{t:'Captures de l\'application',s:[ {src:'gsb1.png', l:'Page connexion GSB'},
+  {src:'gsb2.png', l:'Accueil visiteur'},
+  {src:'gsb3.png', l:'Page connexion GSB'},,]},
+    code:{f:'connexion.php',l:'PHP',c:`<?php\nsession_start();\nif ($_SERVER['REQUEST_METHOD'] === 'POST') {\n    $login = $_POST['login'] ?? '';\n    $mdp   = $_POST['mdp']   ?? '';\n    $req = $pdo->prepare(\n        'SELECT id,nom,mdpHash,role FROM visiteur WHERE login=?'\n    );\n    $req->execute([$login]);\n    $user = $req->fetch();\n    // bcrypt : on compare deux hash, jamais en clair\n    if ($user && password_verify($mdp,$user['mdpHash'])) {\n        $_SESSION['userId'] = $user['id'];\n        $_SESSION['role']   = $user['role'];\n        header('Location: accueil.php');\n        exit;\n    }\n    $erreur = "Identifiants incorrects.";\n}`}},
+  'f-amap':{tag:'Formation · Kotlin / Android · Application mobile',title:'Application mobile métier AMAP',sub:'Android Kotlin — tournée livreur, SHA-256, sérialisation',blocs:['B1','B4','B5'],
+    left:{t:'Fonctionnalités développées',i:['Authentification par code secret — hachage SHA-256 avec salage (classe Java).','Écran liste de la tournée du jour avec tri par clic long.','Détail d\'une livraison : client, colis, montant, statut via Spinner.','Saisie de notes persistées par sérialisation Kotlin.','Architecture MVC : packages controller / model / repository / outils.','Développé avec Android Studio en Kotlin.']},
+    right:{t:'Captures de l\'app',s:[
+  {src:'amap.png', l:'Liste tournée'},
+  {src:'amap2.png', l:'Détail livraison'},]},
+    code:{f:'PasswordHasherSecure.java',l:'Java',c:`public class PasswordHasherSecure {\n    public static String hashPassword(String pwd, String salt)\n            throws NoSuchAlgorithmException {\n        MessageDigest md = MessageDigest.getInstance("SHA-256");\n        byte[] h = md.digest((salt+pwd).getBytes(UTF_8));\n        StringBuilder sb = new StringBuilder();\n        for (byte b : h) sb.append(String.format("%02x",b));\n        return sb.toString();\n    }\n    // On compare deux hash — jamais le mot de passe en clair\n    public static boolean verify(String in,String salt,String stored)\n            throws NoSuchAlgorithmException {\n        return hashPassword(in,salt).equals(stored);\n    }\n}`}},
+  'f-m2l':{tag:'Formation · Java / Swing / XML · Application desktop',title:'Application M2L — Gestion club d\'escrime',sub:'Java Swing MVC — lecture XML, catégories, calcul tarifs FFE',blocs:['B1','B2','B4','B5'],
+    left:{t:'Architecture & fonctionnalités',i:['Application Java desktop Swing — club Cercle d\'Escrime de Rouen.','Architecture MVC stricte : Modele / Repositories / Service / UI / Test.','Lecture des données depuis fichiers XML (utilisateur.xml, categorie.xml).','Déduction automatique de la catégorie selon l\'année de naissance.','Calcul des tarifs d\'adhésion et de la licence FFE.','Affichage des résultats dans un tableau Swing (JTable).']},
+    right:{t:'Captures IntelliJ / Interface',s:[  {src:'gea1.png', l:'Interface Swing'},
+      {src:'gea2.png', l:'Interface Swing'},
+      {src:'gea3.png', l:'Interface Swing'}
+    ]},
+    code:{f:'AdherentService.java',l:'Java',c:`public class AdherentService {\n    private final CategorieRepository catRepo;\n    public AdherentService(CategorieRepository c){this.catRepo=c;}\n\n    public Categorie deduireCategorie(int annee) {\n        int age=Calendar.getInstance().get(Calendar.YEAR)-annee;\n        return catRepo.findByAge(age);\n    }\n    public double calculerTarifAdhesion(Adherent a) {\n        Categorie cat=deduireCategorie(a.getAnneeNaissance());\n        return cat.getTarifAdhesion()+cat.getLicenceFFE();\n    }\n}`}},
+  'f-bijoux':{tag:'Formation · HTML / CSS · Site web · Collab BTS SAM',title:'Site web Bijoux — Collaboration BTS SAM',sub:'Site vitrine réalisé sur cahier des charges fourni par la classe BTS SAM (rôle client)',blocs:['B3','B6'],
+    left:{t:'Contexte du projet',i:['La classe BTS SAM jouait le rôle du client — ils ont rédigé le cahier des charges.','Projet de collaboration inter-classes : BTS SIO développe, BTS SAM commande.','Site vitrine pour une boutique de bijoux — présentation gamme, contact, visuels.','Réalisation en HTML/CSS pur, sans framework — intégration fidèle au CdC.','Respect des contraintes visuelles : charte graphique, maquettes fournies par le client.','Livraison et présentation au "client" BTS SAM en fin de projet.']},
+    right:{t:'Captures du site',s:[]},
+    code:{f:'index.html',l:'HTML / CSS',c:`<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>Bijoux — Boutique</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <header class="site-header">\n    <div class="logo">✦ Bijoux</div>\n    <nav>\n      <a href="#collections">Collections</a>\n      <a href="#apropos">À propos</a>\n      <a href="#contact">Contact</a>\n    </nav>\n  </header>\n  <section class="hero">\n    <h1>Bijoux artisanaux</h1>\n    <p>Chaque pièce est unique, fabriquée à la main.</p>\n    <a href="#collections" class="btn">Découvrir</a>\n  </section>\n</body>\n</html>`}},
+  'f-glpi':{tag:'Formation · GLPI · Gestion de parc',title:'Tickets & inventaire GLPI',sub:'Suivi des incidents, gestion du parc, tickets utilisateurs',blocs:['B1','B2'],
+    left:{t:'Utilisation de GLPI',i:['Création et suivi de tickets d\'incidents utilisateurs.','Attribution des tickets à un technicien selon la file d\'attente.','Inventaire du parc informatique (postes, imprimantes, serveurs).','Suivi de l\'état des équipements et des interventions.','Génération de rapports sur les incidents traités.']},
+    right:{t:'Interface GLPI',s:[
+        {src:'glpi1.png', l:'Gestion tickets'},
+          {src:'glpi2.png', l:'Gestion tickets'},
+          {src:'glpi3.png', l:'Gestion tickets'},
+          {src:'glpi4.png', l:'Gestion tickets'},
+
+
+
+
+
+    ]},
+    code:{f:'glpi_workflow.txt',l:'Procédure',c:`WORKFLOW GLPI\n\n1. CRÉATION DU TICKET\n   Catégorie : Incident / Demande\n   Urgence : 1 (très haute) à 5 (très basse)\n\n2. ATTRIBUTION\n   Technicien assigné\n   Notification automatique\n\n3. SUIVI\n   Nouveau → En cours → Résolu → Clos\n\n4. INVENTAIRE\n   Lien ticket ↔ matériel concerné`}}
+};
+
+const H=document.getElementById('H');
+const MB=document.getElementById('MB');
+const MN=document.getElementById('MN');
+const OV=document.getElementById('OV');
+const MT=document.getElementById('MT');
+const MTI=document.getElementById('MTI');
+const MS2=document.getElementById('MS');
+const MB2=document.getElementById('MB2');
+
+window.addEventListener('scroll',()=>H.classList.toggle('sc',scrollY>8));
+MB.addEventListener('click',()=>{const o=MN.classList.toggle('op');MB.classList.toggle('op',o);document.body.classList.toggle('locked',o)});
+document.querySelectorAll('.mnav a').forEach(a=>a.addEventListener('click',()=>{MN.classList.remove('op');MB.classList.remove('op');document.body.classList.remove('locked')}));
+
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vi')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(e=>ro.observe(e));
+
+const secs=[...document.querySelectorAll('section[id]')];
+const nls=[...document.querySelectorAll('nav a,.mnav a')];
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop-120)c=s.id});nls.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+c))});
+
+const fbs=[...document.querySelectorAll('.fl')];
+const pcs=[...document.querySelectorAll('.pc')];
+let cF='all',cS='';
+const applyF=()=>pcs.forEach(c=>{const mf=cF==='all'||c.dataset.filter===cF;const ms=!cS||c.dataset.search.includes(cS);c.style.display=mf&&ms?'':'none'});
+fbs.forEach(b=>b.addEventListener('click',()=>{fbs.forEach(x=>x.classList.remove('act'));b.classList.add('act');cF=b.dataset.f;applyF()}));
+document.getElementById('SI').addEventListener('input',e=>{cS=e.target.value.toLowerCase().trim();applyF()});
+
+function buildM(d){
+  MT.textContent=d.tag;MTI.textContent=d.title;MS2.textContent=d.sub;
+  const sc=d.right.s.length?`<div class="scrs">${d.right.s.filter(Boolean).map(x=>`<div class="si" onclick="openLB('${x.src}','${x.l}')"><img src="${x.src}" alt="${x.l}" loading="lazy"><div class="sl">🔍 ${x.l}</div></div>`).join('')}</div>`:`<p style="color:var(--muted2);font-size:.82rem;font-family:var(--fm);padding:8px">— captures à venir —</p>`;
+  const code=d.code.c.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  MB2.innerHTML=`<div class="pl"><div class="ptop"><div class="pleft"><h4>${d.left.t}</h4><div class="il">${d.left.i.map(i=>`<div class="ir"><div class="dot"></div><p>${i}</p></div>`).join('')}</div></div><div class="pright" style="padding:0;overflow:hidden"><div style="padding:16px 20px;border-bottom:1px solid var(--border)"><h4>${d.right.t}</h4></div><div style="padding:16px">${sc}</div></div></div><div class="pbot"><div class="cb"><div class="ch"><div class="dots"><span></span><span></span><span></span></div><span class="cf">${d.code.f}</span><span class="cl">${d.code.l}</span></div><pre>${code}</pre></div></div><div class="bls"><span class="bll">BLOCS BTS</span>${d.blocs.map(b=>`<span class="blb">${b}</span>`).join('')}</div></div>`;
+}
+pcs.forEach(c=>c.addEventListener('click',()=>{const d=MD[c.dataset.key];if(!d)return;buildM(d);OV.classList.add('op');document.body.classList.add('locked');OV.scrollTop=0}));
+const closeM=()=>{OV.classList.remove('op');document.body.classList.remove('locked')};
+document.getElementById('CB').addEventListener('click',closeM);
+OV.addEventListener('click',e=>{if(e.target===OV)closeM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+</script>
+</body>
+</html>
